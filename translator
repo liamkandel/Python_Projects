@@ -1,0 +1,19 @@
+# make sure to have 'translate_this.txt' in the same path as the python file you run this on
+
+from translate import Translator
+lang_choices = ['en', 'es', 'pt', 'zh']
+lang = ''
+
+while lang not in lang_choices:
+    lang = input("""Please choose language to translate:
+English = 'en'
+Spanish = 'es'
+Portuguese = 'pt'
+Chinese = 'zh'
+""")
+
+translator = Translator(to_lang=lang)
+
+with open('translate_this.txt', mode='r') as trans_text:
+    translated_text = translator.translate(trans_text.read())
+    print(translated_text)
