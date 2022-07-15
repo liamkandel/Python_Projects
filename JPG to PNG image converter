@@ -1,0 +1,16 @@
+import sys, glob, os
+from PIL import Image
+
+jpg_folder = sys.argv[1] # first argument should be file path to folder with JPEG images
+png_folder = sys.argv[2] # second argument should be file path to folder that you want to have PNG images in
+
+if not os.path.exists(png_folder): # creates folder if it doesn't exist
+    os.makedirs(png_folder)
+
+dir_path = f'{jpg_folder}*/*' 
+res = glob.glob(dir_path)
+
+for i, file in enumerate(res):
+    img = Image.open(file)
+    img.save(f"{png_folder}\img{i}.png") # saves images to png_folder with name ending in index of images in first folder (ik that makes a lot of sense)
+
